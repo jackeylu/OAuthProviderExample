@@ -1,4 +1,4 @@
-<?
+<?php
 	require(dirname(__FILE__)."/../interfaces/IUser.php");
 	
 	class User implements IUser {

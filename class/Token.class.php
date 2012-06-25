@@ -1,5 +1,6 @@
 <?php
-	require(dirname(__FILE__)."/../interfaces/IToken.php");
+	require_once(dirname(__FILE__)."/../interfaces/IToken.php");
+
 	class Token implements IToken{
 		
 		protected $id;

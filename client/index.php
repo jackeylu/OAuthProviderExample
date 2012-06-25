@@ -15,6 +15,7 @@
 		echo "to authenticate go <a href=\"".$info['authentification_url']."?oauth_token=".$info['oauth_token']."\">here</a>";
 	} catch(OAuthException $E){
 		echo "<pre>OAuthException occured.</pre>";
+		echo "<pre>". $E->getMessage() . "</pre>";
 		echo "<pre>".print_r($E->getTrace(),true)."</pre>";
 		echo "<pre>".print_r($E->debugInfo,true)."</pre>";
 	}

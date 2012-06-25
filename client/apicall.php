@@ -4,7 +4,7 @@
 			$oauth_client = new Oauth("key","secret");
 			$oauth_client->enableDebug();
 			$oauth_client->setToken($_POST['token'],$_POST['token_secret']);
-			$oauth_client->fetch("http://localhost/OAuthProviderExample/oauth/api/user");
+			$oauth_client->fetch("http://www.oape.net/oauth/api/user");
 			echo "API RESULT : ".$oauth_client->getLastResponse();
 		} catch (OAuthException $E){
 			echo $E->debugInfo;

@@ -5,7 +5,7 @@
 				$oauth_client = new Oauth("key","secret");
 				$oauth_client->enableDebug();
 				$oauth_client->setToken($_POST['oauth_token'],$_POST['oauth_token_secret']);
-				$info = $oauth_client->getAccessToken("http://localhost/OAuthProviderExample/oauth/access_token",null,$_POST['oauth_verifier']);
+				$info = $oauth_client->getAccessToken("http://www.oape.net/oauth/access_token",null,$_POST['oauth_verifier']);
 				echo "<h1>Congrats !</h1>";
 				echo "<strong>AccessToken</strong> ".$info['oauth_token']."<br />";
 				echo "<strong>AccessToken Secret</strong> ".$info['oauth_token_secret'];

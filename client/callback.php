@@ -31,4 +31,7 @@
 		<?
 		}
 	}
+	else{
+		echo "<strong> this is failed with empty token.</strong>";
+	}
 ?>

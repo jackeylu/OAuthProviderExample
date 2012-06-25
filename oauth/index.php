@@ -29,10 +29,13 @@ if (isset($_REQUEST['oauth_token'])){
 			}
 		}
 	}else{
+		echo "request_token is " ;
+		var_dump($request_token);
+		echo "<br/>";
 		echo "Please specify an oauth_token";
 	}
 }else{
-	echo "Invalid parameter called";
+	echo "Invalid parameter called, need oauth_token";
 }
 
 /*	$provider = new Provider();

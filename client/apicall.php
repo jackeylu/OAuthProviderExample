@@ -12,8 +12,8 @@
 	} else {
 		?>
 	<form method="post">
-		Access token : <input type="text" name="token" value="<?=$_REQUEST['token'];?>" /> <br />
-		Access token secret : <input type="text" name="token_secret" value="<?=$_REQUEST['token_secret'];?>" /> <br />
+		Access token : <input type="text" name="token" value="<?php echo $_REQUEST['token'];?>" /> <br />
+		Access token secret : <input type="text" name="token_secret" value="<?php echo $_REQUEST['token_secret'];?>" /> <br />
 		<input type="submit" value="do An api call" />
 	</form>
-	<? }  ?>
+	<?php }  ?>

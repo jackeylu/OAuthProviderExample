@@ -2,7 +2,8 @@
 	$oauth_client = new Oauth("key","secret");
 	$oauth_client->enableDebug();
 	try {
-		$info = $oauth_client->getRequestToken("http://www.oape.net/oauth/request_token?oauth_callback=http://www.oape.net/client/callback.php");
+		$info = $oauth_client->getRequestToken("http://www.oape.net/oauth/?request_token&oauth_callback=http://www.oape.net/client/callback.php");
+		print_r($info);
 		if (FALSE == $info || !isset($info) || empty($info))
 		{
 			print "Failed fetching request token, response was:".

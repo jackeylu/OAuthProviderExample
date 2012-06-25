@@ -5,7 +5,7 @@
 				$oauth_client = new Oauth("key","secret");
 				$oauth_client->enableDebug();
 				$oauth_client->setToken($_POST['oauth_token'],$_POST['oauth_token_secret']);
-				$info = $oauth_client->getAccessToken("http://www.oape.net/oauth/access_token",null,$_POST['oauth_verifier']);
+				$info = $oauth_client->getAccessToken("http://www.oape.net/oauth/?access_token",null,$_POST['oauth_verifier']);
 				echo "<h1>Congrats !</h1>";
 				echo "<strong>AccessToken</strong> ".$info['oauth_token']."<br />";
 				echo "<strong>AccessToken Secret</strong> ".$info['oauth_token_secret'];
@@ -19,16 +19,16 @@
 		?>
 			<form method="post" action="callback.php">
 				<label>token</label>
-				<input type="text" name="oauth_token" value="<?=$_REQUEST['oauth_token'];?>" /><br />
+				<input type="text" name="oauth_token" value="<?php echo $_REQUEST['oauth_token'];?>" /><br />
 				<label>secret</label>
 				<input type="text" name="oauth_token_secret" value="" />
 				<span>This is not passed by url, a real client would have stored this somewhere, you can get it from the db</span>
 				<br />
 				<label>verifier</label>
-				<input type="text" name="oauth_verifier" value="<?=$_REQUEST['oauth_verifier']?>" />
+				<input type="text" name="oauth_verifier" value="<?php echo $_REQUEST['oauth_verifier']?>" />
 				<input type="submit" value="OK">
 			</form>
-		<?
+		<?php
 		}
 	}
 	else{

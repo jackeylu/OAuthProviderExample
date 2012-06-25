@@ -4,6 +4,10 @@ function __autoload($name){
 }
 
 
+var_dump($_SERVER['REQUEST_URI']);
+echo "<br/>";
+echo "<br/>";
+echo "<br/>";
 $provider = new Provider();
 
 if(strstr($_SERVER['REQUEST_URI'],"request_token")){

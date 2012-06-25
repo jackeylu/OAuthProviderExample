@@ -35,6 +35,7 @@
 			try{
 				$this->oauth->checkOAuthRequest();
 			} catch(OAuthException $E){
+				echo "OAuthException with checkOAuthRequest ";
 				echo OAuthProvider::reportProblem($E);
 				$this->oauth_error = true;
 			}

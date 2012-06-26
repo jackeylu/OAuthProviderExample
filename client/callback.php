@@ -5,13 +5,17 @@
 				$oauth_client = new Oauth("key","secret");
 				$oauth_client->enableDebug();
 				$oauth_client->setToken($_POST['oauth_token'],$_POST['oauth_token_secret']);
-				$info = $oauth_client->getAccessToken("http://www.oape.net/oauth/?access_token",null,$_POST['oauth_verifier']);
+				$info = $oauth_client->getAccessToken("http://192.168.127.149/OAuthProviderExample/oauth/?access_token",null,$_POST['oauth_verifier']);
+				print_r($info);
 				echo "<h1>Congrats !</h1>";
 				echo "<strong>AccessToken</strong> ".$info['oauth_token']."<br />";
 				echo "<strong>AccessToken Secret</strong> ".$info['oauth_token_secret'];
 				echo "<a href=\"apicall.php?token=".$info['oauth_token']."&token_secret=".$info['oauth_token_secret']."\">get your user id with an api call</a>";
 			} catch(OAuthException $E){
-				echo print_r($E->debugInfo);
+				echo "<strong>" . $E->getMessage() . "</strong>";
+				echo "<br/>debug information : <br/>";
+				var_dump($E->debugInfo);
+				echo "<br/>";
 			}
 			
 			

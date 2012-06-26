@@ -3,24 +3,16 @@ function __autoload($name){
 	require("../class/".$name.".class.php");
 }
 
-
-var_dump($_SERVER['REQUEST_URI']);
-echo "<br/>";
-echo "<br/>";
-echo "<br/>";
 $provider = new Provider();
 
 if(strstr($_SERVER['REQUEST_URI'],"request_token")){
-	echo "request_token:";
 	$provider->setRequestTokenQuery();
 	$provider->checkRequest();
 	echo $provider->generateRequestToken();
 } else if(strstr($_SERVER['REQUEST_URI'],"access_token")){
-	echo "access_token:";
 	$provider->checkRequest();
 	echo $provider->generateAccessToken();
 } else if(strstr($_SERVER['REQUEST_URI'],"create_consumer")){
-	echo "create_consumer:";
 	$consumer = Provider::createConsumer();
 ?>
 		<h1>New consumer</h1>

@@ -6,11 +6,11 @@
 		private $consumer;
 		private $oauth_error;
 		private $user;
-		private $authentification_url = "http://www.oape.net/oauth/login.php";
+		private $authentification_url = "http://192.168.127.149/OAuthProviderExample/oauth/login.php";
 		
 		public static function createConsumer(){
-			$key = sha1(OAuthProvider::generateToken(20,true));
-			$secret = sha1(OAuthProvider::generateToken(20,true));
+			$key = sha1(OAuthProvider::generateToken(20));
+			$secret = sha1(OAuthProvider::generateToken(20));
 			return Consumer::create($key,$secret);
 		}
 		
@@ -62,8 +62,8 @@
 				return false;
 			}
 			
-			$token = sha1(OAuthProvider::generateToken(20,true));
-			$token_secret = sha1(OAuthProvider::generateToken(20,true));
+			$token = sha1(OAuthProvider::generateToken(20));
+			$token_secret = sha1(OAuthProvider::generateToken(20));
 			
 			$callback = $this->oauth->callback;
 			
@@ -83,8 +83,8 @@
 				return false;
 			}
 			
-			$access_token = sha1(OAuthProvider::generateToken(20,true));
-			$secret = sha1(OAuthProvider::generateToken(20,true));
+			$access_token = sha1(OAuthProvider::generateToken(20));
+			$secret = sha1(OAuthProvider::generateToken(20));
 			
 			$token = Token::findByToken($this->oauth->token);
 			
@@ -96,7 +96,7 @@
 		 * This function generates a verifier and returns it
 		 */
 		public function generateVerifier(){
-			$verifier = sha1(OAuthProvider::generateToken(20,true));
+			$verifier = sha1(OAuthProvider::generateToken(20));
 			return $verifier;
 		}
 		

@@ -19,6 +19,9 @@
 			/* create our instance */
 			$this->oauth = new OAuthProvider();
 			
+			/*
+			 * 关键的步骤，注册必须的三个handler
+			 */
 			/* setup check functions */
 			$this->oauth->consumerHandler(array($this,'checkConsumer'));
 			$this->oauth->timestampNonceHandler(array($this,'checkNonce'));
@@ -33,9 +36,12 @@
 		public function checkRequest(){
 			/* now that everything is setup we run the checks */
 			try{
+				/*
+				 * 该过程将会调用在__construct中注册的
+				 * 三个handlers
+				 */
 				$this->oauth->checkOAuthRequest();
 			} catch(OAuthException $E){
-				echo "OAuthException with checkOAuthRequest ";
 				echo OAuthProvider::reportProblem($E);
 				$this->oauth_error = true;
 			}
@@ -76,6 +82,8 @@
 		/**
 		 * This function generates a Access token saves it in the DB and return it
 		 * In that process it also removes the request token used to get that access token
+		 *
+		 * 调用该方法之前，应该先调用 checkRequest方法
 		 */
 		public function generateAccesstoken(){
 			
@@ -83,9 +91,19 @@
 				return false;
 			}
 			
+			/*
+			 * 注意，尽量不要在OAuthProvider::generateToken参数中
+			 * 将$strong参数设置成true，否则可以导致超时，
+			 * 引起数据库或http的time out等难以定位的问题
+			 */
 			$access_token = sha1(OAuthProvider::generateToken(20));
 			$secret = sha1(OAuthProvider::generateToken(20));
 			
+			/*
+			 * 生成一对令牌后，要写入到数据库，以备后用
+			 *
+			 * 首先，要保证数据库中的令牌不重复
+			 */
 			$token = Token::findByToken($this->oauth->token);
 			
 			$token->changeToAccessToken($access_token,$secret);
@@ -157,6 +175,11 @@
 		 * And the nonce has to be unknown for this consumer
 		 * Once everything is OK it saves the nonce in the db
 		 * It's called by OAuthCheckRequest()
+		 *
+		 * 此处设定的是timestamp不能超过5分钟，否则失效
+		 *
+		 * 如果参数中的nonce变量在数据库中已经存在，则是非法的nonce值
+		 * 否则，将该nonce值插入到数据库中
 		 * @param $provider
 		 */
 		public function checkNonce($provider){

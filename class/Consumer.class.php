@@ -4,6 +4,21 @@
 	
 	/* this class is just for the example purpose
 	 * It's badly written but it's just for POC 
+	 *
+	 * 很多代码安全性、异常处理都没有考虑，这仅仅是
+	 * 一个原型
+	 *
+	 * 从安全性角度考虑，数据库存储方面要注意防止sql injection，
+	 * 可以考虑ORM方式提高数据库安全性
+	 *
+	 * 从性能角度考虑，可以将consumer/token等信息放在缓存中
+	 *
+	 * 从开发接口的友善角度考虑，应该定义一些有意义的
+	 * error code,然后从HTTP可以传输的形式将接口返回值
+	 * 告诉第三方开发者，便于调试。
+	 *
+	 * 再从安全角度和运营考虑，可以借鉴主流的方式，进行
+	 * API rate控制
 	 */
 	class Consumer implements IConsumer{
 		
@@ -63,6 +78,14 @@
 			return $this->id;
 		}
 		
+		/*
+		 * 检查当前的consumer是否具有传入的nonce和timestamp
+		 *
+		 * @param $nonce
+		 * @param $timestamp
+		 *
+		 * @return true 表示具有传入的nonce和timestamp，否则false
+		 */
 		public function hasNonce($nonce,$timestamp){
 			$check = $this->pdo->query("select count(*) as cnt from consumer_nonce where timestamp = '".$timestamp."' and nonce = '".$nonce."' and consumer_id = ".$this->id)->fetch();
 			if($check['cnt']==1){
@@ -72,6 +95,13 @@
 			}
 		}
 		
+		/*
+		 * 以传入的nonce值，当前timestamp以及consumer id
+		 * 作为值记录到数据库中
+		 *
+		 * @param $nonce
+		 * @return void
+		 */
 		public function addNonce($nonce){
 			$check = $this->pdo->exec("insert into consumer_nonce (consumer_id,timestamp,nonce) values (".$this->id.",".time().",'".$nonce."')");
 		}

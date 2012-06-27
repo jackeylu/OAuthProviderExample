@@ -1,5 +1,5 @@
 <?php
-require_once(dirname(__FILE__) . "config.php");
+require_once(dirname(__FILE__) . "/config.php");
 
 if(isset($_REQUEST['oauth_token'])&&isset($_REQUEST['oauth_verifier'])){
 	if(isset($_POST['oauth_token'])){

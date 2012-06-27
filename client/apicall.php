@@ -5,7 +5,7 @@
  * by the access token/secret and consumer key/secret
  */
 
-require_once(dirname(__FILE__) . "config.php");
+require_once(dirname(__FILE__) . "/config.php");
 
 if(isset($_POST['token'])){
 	try {

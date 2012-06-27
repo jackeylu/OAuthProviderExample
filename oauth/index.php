@@ -21,12 +21,23 @@ if(strstr($_SERVER['REQUEST_URI'],"request_token")){
 <?php
 } else if(strstr($_SERVER['REQUEST_URI'],"api/user")){
 	// this is a basic api call that will return the id of an authenticated user 
+
 	$provider->checkRequest();
+
 	try {
 		echo $provider->getUser()->getId();
 	} catch(Exception $E){
 		echo "Exception occured: ";
-		echo $E;
+		echo $E->getMessage();
+	}
+}else if(strstr($_SERVER['REQUEST_URI'],"api/gpa")){
+	$provider->checkRequest();
+	try{
+		$user = $provider->getUser();
+		echo $user->getLogin() . ":" . $user->getGPA();
+	}catch(Exception $e){
+		echo "Exception occured: ";
+		echo $e->getMessage();
 	}
 }
 else{

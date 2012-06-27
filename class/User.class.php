@@ -6,6 +6,7 @@
 		private $id;
 		private $login;
 		private $pdo;
+		private $gpa;
 		
 		/* bogus function to mimic authentification */
 		public static function exist($login){
@@ -30,6 +31,7 @@
 		private function load(){
 			$info = $this->pdo->query("select * from user where id = ".$this->id)->fetch();
 			$this->login = $info['login'];
+			$this->gpa   = $info['gpa'];
 		}
 
 		public function getId(){
@@ -38,5 +40,9 @@
 		
 		public function getLogin(){
 			return $this->login;
+		}
+
+		public function getGPA(){
+			return $this->gpa;
 		}
 	}

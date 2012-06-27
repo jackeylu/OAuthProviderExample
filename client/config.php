@@ -3,10 +3,10 @@
 // SERVER PROVIDER URL
 $SERVER_URL		= "http://192.168.127.149/OAuthProviderExample";
 $SERVER_OAUTH_URL	= $SERVER_URL . "/oauth/";
-$SERVER_LOGIN_URL	= $SERVER_LOGIN_URL . "/login.php";
-$REQUEST_TOKEN_URL	= $SERVER_URL . "/?request_token";
-$AUTHENTIFICATION_URL	= $SERVER_URL . "/login.php";
-$ACCESS_TOKEN_URL	= $SERVER_URL . "/?access_token";
+$SERVER_LOGIN_URL	= $SERVER_OAUTH_URL. "/login.php";
+$REQUEST_TOKEN_URL	= $SERVER_OAUTH_URL . "/?request_token";
+$AUTHENTIFICATION_URL	= $SERVER_OAUTH_URL . "/login.php";
+$ACCESS_TOKEN_URL	= $SERVER_OAUTH_URL . "/?access_token";
 
 // CLIENT URL
 $CLIENT_URL		= "http://192.168.127.129/OAuthClient/client";

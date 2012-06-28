@@ -12,6 +12,11 @@ $ACCESS_TOKEN_URL	= $SERVER_OAUTH_URL . "/?access_token";
 $CLIENT_URL		= "http://192.168.127.129/OAuthClient/client";
 $CALLBACK_URL		= $CLIENT_URL . "/callback.php";
 
+// Client key and secret
+// 从Service Provider (SERVER) 端注册应用时会分配得到
+$CONSUMER_KEY		= "key";
+$CONSUMER_SECRET	= "secret";
+
 // API URL
 //
 // the base url

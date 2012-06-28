@@ -4,7 +4,7 @@ require_once(dirname(__FILE__) . "/config.php");
 if(isset($_REQUEST['oauth_token'])&&isset($_REQUEST['oauth_verifier'])){
 	if(isset($_POST['oauth_token'])){
 		try{
-			$oauth_client = new Oauth("key","secret");
+			$oauth_client = new Oauth($CONSUMER_KEY, $CONSUMER_SECRET);
 			$oauth_client->enableDebug();
 			$oauth_client->setToken($_POST['oauth_token'],$_POST['oauth_token_secret']);
 			$info = $oauth_client->getAccessToken($ACCESS_TOKEN_URL,null,$_POST['oauth_verifier']);

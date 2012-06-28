@@ -9,7 +9,7 @@ require_once(dirname(__FILE__) . "/config.php");
 
 if(isset($_POST['token'])){
 	try {
-		$oauth_client = new Oauth("key","secret");
+		$oauth_client = new Oauth($CONSUMER_KEY,  $CONSUMER_SECRET);
 		$oauth_client->enableDebug();
 		$oauth_client->setToken($_POST['token'],$_POST['token_secret']);
 		$oauth_client->fetch($API_USER_ID_URL);

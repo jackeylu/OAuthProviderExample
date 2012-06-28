@@ -20,7 +20,7 @@ $CONSUMER_SECRET	= "secret";
 // API URL
 //
 // the base url
-$API_SERVER_URL		= $SERVER_OAUTH_URL . "?/api";
+$API_SERVER_URL		= $SERVER_OAUTH_URL . "/?api";
 // The url to get the user id with given access token
 $API_USER_ID_URL	= $API_SERVER_URL . "/user";
 // The url to get the gpa data with the given access token

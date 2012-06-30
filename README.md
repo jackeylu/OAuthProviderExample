@@ -53,23 +53,23 @@ Provider端需要首先通过sql/schema.sql建立相应的库表，并配置clas
      - 令牌的操作实现。
   - User.class.php  
      - 自定义API的一个示例，这里实现了获取用户基本信息的方法。依此类推，还可以实现自身平台的特殊数据服务。
-- client
-  - apicall.php
-  - callback.php
-  - config.php
-  - getgpa.php
-  - getuid.php
-  - index.php
-- favicon.ico
-- interfaces
-  - IConsumer.php
-  - IToken.php
-  - IUser.php
-- oauth
-  - index.php
-  - login.php
-- README.md
-- sql
-  - schema.sql
+- client 一个纯粹使用php oauth方法的client示例，client部署时仅需该文件夹内容
+  - apicall.php 示例流程中完成Access Token 获取后进行的API调用例子，获取用户的ID
+  - callback.php 站外应用在SP中指定的回调URI
+  - config.php 部署的时候，需要修改该配置文件中的参数
+  - getgpa.php 一个扩展示例，模拟CLIENT得到Access Token之后，在token有效期内随时获得用户的最新GPA数据
+  - getuid.php 同上，获取用户id数据。注意，在新的部署环境中，需要修改这两个文件中的token和secret值
+  - index.php client的index首页，试验也是从该文件开始
+- favicon.ico 
+- interfaces 接口定义文件夹
+  - IConsumer.php 定义Client/Consumer的基本操作接口，与Consumer实现相关的持久化操作由具体的实现决定
+  - IToken.php 定义Token的基本操作，具体token的存储持久化由具体实现决定
+  - IUser.php 定义User的基本操作，与API设计相关
+- oauth SP对外服务接口
+  - index.php 控制器脚本，实现对URL请求的解析调度
+  - login.php 授权与登录页面
+- README.md 本文件
+- sql 数据库建库脚本文件
+  - schema.sql 同上
 
 
